@@ -1,13 +1,12 @@
+const http = require('http');
 const config = require('./config');
-const express = require('express');
 const Logger = require('./loaders/logger');
 
 async function startServer() {
-  const app = express();
+  const app = await require('./loaders')();
 
-  await require('./loaders')({ expressApp: app });
-
-  app.listen(config.port, err => {
+  const server = http.createServer(app);
+  server.listen(config.port, err => {
     if (err) {
       Logger.error(err);
       process.exit(1);

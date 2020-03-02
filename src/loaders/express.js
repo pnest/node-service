@@ -2,8 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const config = require('../config');
+const routes = require('../api');
+const Logger = require('./logger');
 
-module.exports = ({ app }) => {
+module.exports = () => {
+  const app = express();
+
   /**
    * Health Check endpoints
    */
@@ -25,6 +29,9 @@ module.exports = ({ app }) => {
 
   // Middleware that transforms the raw string of req.body into json
   app.use(bodyParser.json());
+
+  // Load API routes
+  app.use(config.api.prefix, routes());
 
   // catch 404 and forward to error handler
   app.use((req, res, next) => {
@@ -54,4 +61,8 @@ module.exports = ({ app }) => {
       }
     });
   });
+
+  Logger.info('✌️  Express configuration loaded');
+
+  return app;
 };

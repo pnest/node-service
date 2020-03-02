@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "nodemon",
+    "inspect": "nodemon --inspect src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/pnest/node-service.git",
@@ -20,6 +21,13 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mongoose": "^5.9.2",
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "bugs": {
+    "url": "https://github.com/pnest/node-service/issues"
   }
 }
