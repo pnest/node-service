@@ -1,22 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
 const cors = require('cors');
 const config = require('../config');
 const routes = require('../api');
-const Logger = require('./logger');
+const logger = require('./logger');
 
 module.exports = () => {
   const app = express();
-
-  /**
-   * Health Check endpoints
-   */
-  app.get('/status', (req, res) => {
-    res.status(200).end();
-  });
-  app.head('/status', (req, res) => {
-    res.status(200).end();
-  });
 
   // Useful if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
   // It shows the real origin IP in the heroku or Cloudwatch logs
@@ -29,6 +20,14 @@ module.exports = () => {
 
   // Middleware that transforms the raw string of req.body into json
   app.use(bodyParser.json());
+
+  // Middleware that stores user session in cookies
+  app.use(
+    cookieSession({
+      name: 'UTRFD',
+      secret: 'anystring'
+    })
+  );
 
   // Load API routes
   app.use(config.api.prefix, routes());
@@ -62,7 +61,7 @@ module.exports = () => {
     });
   });
 
-  Logger.info('✌️  Express configuration loaded');
+  logger.info('✌️  Express configuration loaded');
 
   return app;
 };
