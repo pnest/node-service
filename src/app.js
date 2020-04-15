@@ -1,6 +1,6 @@
 const http = require('http');
 const config = require('./config');
-const logger = require('./loaders/logger');
+const logger = require('./logging/loader');
 
 async function startServer() {
   const app = await require('./loaders')();

@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "nodemon",
+    "watch": "nodemon",
     "inspect": "nodemon --inspect src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,15 +17,21 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
     "mongoose": "^5.9.2",
+    "msgpack-lite": "^0.1.26",
+    "pg": "^7.18.2",
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "flow-bin": "^0.120.1",
+    "flow-remove-types": "^2.120.1",
     "nodemon": "^2.0.2"
   },
   "bugs": {

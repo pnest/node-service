@@ -4,7 +4,7 @@ const cookieSession = require('cookie-session');
 const cors = require('cors');
 const config = require('../config');
 const routes = require('../api');
-const logger = require('./logger');
+const logger = require('../logging/loader');
 
 module.exports = () => {
   const app = express();

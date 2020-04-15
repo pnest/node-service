@@ -1,11 +1,13 @@
+const errorManagementLoader = require('./errorManagement');
 const expressLoader = require('./express');
-const mongooseLoader = require('./mongoose');
-
-const logger = require('./logger');
+const logger = require('../logging/loader');
 
 module.exports = async () => {
-  const mongoConnection = await mongooseLoader();
-  logger.info('✌️  DB loaded and connected');
+  await errorManagementLoader();
+  logger.info('✌️  Error management activated');
+
+  // const mongoConnection = await mongooseLoader();
+  // logger.info('✌️  DB loaded and connected');
 
   // load specific web framework configuration
   const app = await expressLoader();
